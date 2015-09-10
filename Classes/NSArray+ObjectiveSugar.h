@@ -204,6 +204,15 @@
 - (NSArray *)reverse;
 
 /**
+ Groups the collection by result of the block.
+
+ @return A dictionary where the keys are the evaluated result from
+ the block and the values are arrays of elements in the collection that correspond to the key.
+ */
+
+- (NSDictionary *)groupBy:(id (^)(id object))block;
+
+/**
  Return all the objects that are in both self and `array`.
  Alias for Ruby's & operator
 

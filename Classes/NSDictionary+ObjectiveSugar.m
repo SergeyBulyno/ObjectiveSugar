@@ -45,6 +45,17 @@
     return !!self[key];
 }
 
+- (NSDictionary *)dictionaryMap:(id (^)(id key, id value))block {
+	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+
+	[self enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		id result = block(key, obj);
+		dictionary[key] = result;
+	}];
+
+	return dictionary;
+}
+
 - (NSDictionary *)pick:(NSArray *)keys {
     NSMutableDictionary *picked = [[NSMutableDictionary alloc] initWithCapacity:keys.count];
 
